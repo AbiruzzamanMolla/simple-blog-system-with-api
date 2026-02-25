@@ -1,6 +1,6 @@
 # Simple Blog System with API
 
-A modern blog system built with Laravel 12, PHP 8.3, and Bootstrap 5.
+A simple blog system built with Laravel 12, PHP 8.3, and Bootstrap 5.
 
 ## Requirements
 
@@ -25,21 +25,35 @@ A modern blog system built with Laravel 12, PHP 8.3, and Bootstrap 5.
 
 3. **Environment Setup**:
     - Copy `.env.example` to `.env`.
-    - Configure your database settings.
     - Run: `php artisan key:generate`
 
-4. **Database Setup & Seeding**:
+4. **Database Configuration (SQLite)**:
+    - This project uses **SQLite**. To initialize the database, create an empty sqlite file:
+
+    ```bash
+    touch database/database.sqlite
+    ```
+
+    - Ensure your `.env` has: `DB_CONNECTION=sqlite`
+
+5. **Database Setup & Seeding**:
 
     ```bash
     php artisan migrate:fresh --seed
     ```
 
-5. **Build Assets**:
+6. **Build Assets**:
 
     ```bash
     npm run build
     # or
     npm run dev
+    ```
+
+7. **Start the Server**:
+
+    ```bash
+    php artisan serve
     ```
 
 ## Admin Credentials
