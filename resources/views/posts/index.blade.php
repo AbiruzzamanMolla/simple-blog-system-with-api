@@ -29,7 +29,8 @@
                             <td><strong>{{ $post->title }}</strong></td>
                             <td><code class="small">{{ $post->slug }}</code></td>
                             <td>
-                                <form action="{{ route('posts.toggle-status', $post) }}" method="POST">
+                                <form action="{{ route('posts.toggle-status', $post) }}" method="POST"
+                                    onsubmit="return confirm('Change post status?')">
                                     @csrf
                                     @method('PATCH')
                                     <button type="submit" class="badge bg-{{ $post->status->color() }} border-0">
