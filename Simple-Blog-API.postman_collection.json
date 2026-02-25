@@ -1,0 +1,51 @@
+{
+  "info": {
+    "_postman_id": "0448294b-0d30-4af8-95d3-7ffedb77e092",
+    "name": "Simple-Blog-API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "2758820"
+  },
+  "item": [
+    {
+      "name": "Blog List with Pagination",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://simple-blog.test/api/posts",
+          "protocol": "https",
+          "host": [
+            "simple-blog",
+            "test"
+          ],
+          "path": [
+            "api",
+            "posts"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Single Blog Post",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://simple-blog.test/api/posts/consectetur-molestiae-illo-quis-et-totam-699f3daef00c1",
+          "protocol": "https",
+          "host": [
+            "simple-blog",
+            "test"
+          ],
+          "path": [
+            "api",
+            "posts",
+            "consectetur-molestiae-illo-quis-et-totam-699f3daef00c1"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
