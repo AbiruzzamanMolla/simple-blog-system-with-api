@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Enums\PostStatus;
 use App\Models\Admin;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Post extends Model
 {
@@ -19,11 +21,15 @@ class Post extends Model
         'status',
     ];
 
+    protected $casts = [
+        'status' => PostStatus::class,
+    ];
+
     protected static function boot()
     {
         parent::boot();
         static::creating(function ($post) {
-            $post->slug = \Illuminate\Support\Str::slug($post->title) . '-' . uniqid();
+            $post->slug = Str::slug($post->title) . '-' . uniqid();
         });
     }
 

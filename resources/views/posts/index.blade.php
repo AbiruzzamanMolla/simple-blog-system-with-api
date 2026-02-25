@@ -32,9 +32,8 @@
                                 <form action="{{ route('posts.toggle-status', $post) }}" method="POST">
                                     @csrf
                                     @method('PATCH')
-                                    <button type="submit"
-                                        class="badge {{ $post->status === 'published' ? 'bg-success' : 'bg-warning' }} border-0">
-                                        {{ ucfirst($post->status) }}
+                                    <button type="submit" class="badge bg-{{ $post->status->color() }} border-0">
+                                        {{ $post->status->label() }}
                                     </button>
                                 </form>
                             </td>

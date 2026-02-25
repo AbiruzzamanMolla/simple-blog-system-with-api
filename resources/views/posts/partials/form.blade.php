@@ -13,9 +13,12 @@
 <div class="mb-3">
     <x-input-label for="status" :value="__('Status')" />
     <select id="status" name="status" class="form-select" required>
-        <option value="draft" {{ old('status', $post->status ?? '') === 'draft' ? 'selected' : '' }}>Draft</option>
-        <option value="published" {{ old('status', $post->status ?? '') === 'published' ? 'selected' : '' }}>Published
-        </option>
+        @foreach (\App\Enums\PostStatus::cases() as $status)
+            <option value="{{ $status->value }}"
+                {{ old('status', $post->status->value ?? '') === $status->value ? 'selected' : '' }}>
+                {{ $status->label() }}
+            </option>
+        @endforeach
     </select>
     <x-input-error :messages="$errors->get('status')" class="mt-1" />
 </div>

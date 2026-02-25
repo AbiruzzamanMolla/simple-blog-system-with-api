@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
-use Illuminate\Http\Request;
+use App\Enums\PostStatus;
+
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
@@ -83,7 +84,9 @@ class PostController extends Controller
     {
         $this->authorizeAdmin($post);
 
-        $post->status = $post->status === 'published' ? 'draft' : 'published';
+        $post->status = $post->status === PostStatus::PUBLISHED
+            ? PostStatus::DRAFT
+            : PostStatus::PUBLISHED;
         $post->save();
 
         return back()->with('success', 'Post status updated successfully.');

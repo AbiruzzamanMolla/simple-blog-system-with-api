@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\PostStatus;
 use App\Models\Admin;
 use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -27,7 +28,7 @@ class PostFactory extends Factory
             'title' => $title,
             'slug' => Str::slug($title) . '-' . uniqid(),
             'content' => fake()->paragraphs(5, true),
-            'status' => fake()->randomElement(['draft', 'published']),
+            'status' => fake()->randomElement([PostStatus::DRAFT, PostStatus::PUBLISHED]),
             'created_at' => fake()->dateTimeBetween('-1 year', 'now'),
         ];
     }
@@ -38,7 +39,7 @@ class PostFactory extends Factory
     public function published(): static
     {
         return $this->state(fn(array $attributes) => [
-            'status' => 'published',
+            'status' => PostStatus::PUBLISHED,
         ]);
     }
 
@@ -48,7 +49,7 @@ class PostFactory extends Factory
     public function draft(): static
     {
         return $this->state(fn(array $attributes) => [
-            'status' => 'draft',
+            'status' => PostStatus::DRAFT,
         ]);
     }
 }

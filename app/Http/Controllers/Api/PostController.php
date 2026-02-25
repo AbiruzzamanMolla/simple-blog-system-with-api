@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Enums\PostStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PostResource;
 use App\Models\Post;
-use Illuminate\Http\Request;
+
 
 class PostController extends Controller
 {
@@ -14,7 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::where('status', 'published')
+        $posts = Post::where('status', PostStatus::PUBLISHED)
             ->with('admin')
             ->latest()
             ->paginate(10);
@@ -28,7 +29,7 @@ class PostController extends Controller
     public function show(string $slug)
     {
         $post = Post::where('slug', $slug)
-            ->where('status', 'published')
+            ->where('status', PostStatus::PUBLISHED)
             ->with('admin')
             ->firstOrFail();
 
