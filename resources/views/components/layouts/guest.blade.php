@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Blog System') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,25 +25,43 @@
 </head>
 
 <body>
-    <div class="min-vh-100 d-flex align-items-center justify-content-center">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom py-3">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-5">
-                    <div class="text-center mb-4">
-                        <a href="/">
-                            <x-application-logo class="w-25 h-25 text-primary" />
-                        </a>
-                    </div>
-
-                    <div class="card shadow-sm border-0">
-                        <div class="card-body p-4">
-                            {{ $slot }}
-                        </div>
-                    </div>
-                </div>
+            <a class="navbar-brand fw-bold text-primary" href="{{ route('home') }}">
+                Simple Blog
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('home') }}">Home</a>
+                    </li>
+                    @auth
+                        <li class="nav-item ms-lg-3">
+                            <a class="btn btn-primary btn-sm" href="{{ route('dashboard') }}">Dashboard</a>
+                        </li>
+                    @else
+                        <li class="nav-item ms-lg-3">
+                            <a class="btn btn-outline-primary btn-sm" href="{{ route('login') }}">Admin Login</a>
+                        </li>
+                    @endauth
+                </ul>
             </div>
         </div>
-    </div>
+    </nav>
+
+    <main class="container my-5">
+        {{ $slot }}
+    </main>
+
+    <footer class="py-4 bg-white border-top mt-auto">
+        <div class="container text-center text-muted small">
+            &copy; {{ date('Y') }} Simple Blog System. All rights reserved.
+        </div>
+    </footer>
 </body>
 
 </html>

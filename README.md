@@ -1,10 +1,13 @@
 # Simple Blog System with API
 
-A modern, component-based blog system built with Laravel 12, PHP 8.3, and Bootstrap 5.
+A modern blog system built with Laravel 12, PHP 8.3, and Bootstrap 5.
+
+## Requirements
+
+- **PHP**: ^8.3
+- **Composer**: ^2.x
 
 ## Installation
-
-Follow these steps to set up the project locally:
 
 1. **Clone the repository**:
 
@@ -22,15 +25,10 @@ Follow these steps to set up the project locally:
 
 3. **Environment Setup**:
     - Copy `.env.example` to `.env`.
-    - Configure your database settings in `.env`.
-    - Generate application key:
-
-        ```bash
-        php artisan key:generate
-        ```
+    - Configure your database settings.
+    - Run: `php artisan key:generate`
 
 4. **Database Setup & Seeding**:
-   Run migrations and seed the initial admin account:
 
     ```bash
     php artisan migrate:fresh --seed
@@ -39,20 +37,26 @@ Follow these steps to set up the project locally:
 5. **Build Assets**:
 
     ```bash
-    npm run dev
-    # or
     npm run build
-    ```
-
-6. **Start the Server**:
-
-    ```bash
-    php artisan serve
+    # or
+    npm run dev
     ```
 
 ## Admin Credentials
 
-After seeding, you can log in with:
-
 - **Email**: `admin@gmail.com`
 - **Password**: `password`
+
+## Public API Endpoints
+
+- `GET /api/posts`: Paginated list of published posts.
+- `GET /api/posts/{slug}`: Single post details.
+
+## Feature Cleanup & Optimization
+
+In adherence to the core project requirements, the following non-essential features and dependencies were removed to ensure a lean and focused codebase:
+
+- **Registration Management**: Default registration routes and views were removed. Admin accounts should be managed via seeders or manual database entry.
+- **Profile Management**: Profile update and password reset forms were removed as they were not required for the task.
+- **Laravel Sanctum**: Removed the Sanctum package and its associated migrations/config since the API is designed for public read-only access.
+- **API Rate Limiting**: Implemented standard Laravel request throttling (60 req/min) for public API endpoints instead of session/token-based auth.

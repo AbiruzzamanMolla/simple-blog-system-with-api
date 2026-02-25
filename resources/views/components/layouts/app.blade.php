@@ -96,12 +96,13 @@
                         <i class="bi bi-speedometer2"></i> Dashboard
                     </a>
                 </li>
-                <li>
-                    <a href="{{ route('profile.edit') }}"
-                        class="nav-link {{ request()->routeIs('profile.edit') ? 'active' : '' }}">
-                        <i class="bi bi-person"></i> Profile
+                <li class="nav-item">
+                    <a href="{{ route('posts.index') }}"
+                        class="nav-link {{ request()->routeIs('posts.index*') ? 'active' : '' }}">
+                        <i class="bi bi-file-earmark-text"></i> Manage Posts
                     </a>
                 </li>
+
             </ul>
 
             <hr class="text-secondary">
@@ -117,10 +118,7 @@
                     <strong>{{ Auth::user()->name }}</strong>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark shadow" aria-labelledby="dropdownUser1">
-                    <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Settings</a></li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
+
                     <li>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
