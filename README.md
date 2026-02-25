@@ -12,7 +12,7 @@ A simple blog system built with Laravel 12, PHP 8.3, and Bootstrap 5.
 1. **Clone the repository**:
 
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/AbiruzzamanMolla/simple-blog-system-with-api
     cd simple-blog-system-with-api
     ```
 
